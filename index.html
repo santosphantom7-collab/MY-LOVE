@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My KIKI 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+}
+
+#envelope-screen{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(135deg,#ff416c,#ff4b2b);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    z-index:10;
+}
+
+.envelope{
+    width:180px;
+    height:120px;
+    background:#fff;
+    border-radius:8px;
+    cursor:pointer;
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.08);}
+}
+
+#card{
+    width:92%;
+    max-width:420px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(12px);
+    border-radius:20px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 0 25px rgba(255,255,255,0.3);
+    display:none;
+    animation:fadeIn 2s;
+}
+
+@keyframes fadeIn{
+    from{opacity:0;transform:scale(0.9);}
+    to{opacity:1;transform:scale(1);}
+}
+
+h2{
+    font-family:'Great Vibes',cursive;
+    font-size:2.6em;
+    margin-bottom:10px;
+}
+
+p{
+    font-size:15px;
+    line-height:1.7;
+    margin:10px 0;
+}
+
+button{
+    background:#fff;
+    color:#ff4b7d;
+    border:none;
+    padding:12px 25px;
+    border-radius:25px;
+    font-size:15px;
+    cursor:pointer;
+    margin:10px;
+    transition:0.3s;
+}
+
+button:hover{transform:scale(1.08);}
+
+#proposal-text, #proposal, #choices{
+    display:none;
+    margin-top:15px;
+}
+
+#proposal{
+    font-size:1.5em;
+    animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{text-shadow:0 0 10px #fff;}
+    to{text-shadow:0 0 25px #fff;}
+}
+
+audio{display:none;}
+</style>
+</head>
+
+<body>
+
+<div id="envelope-screen">
+    <div class="envelope" onclick="openLove()"></div>
+    <h1>Tap To Open 💌</h1>
+</div>
+
+<div id="card">
+    <h2>My Beautiful KIKI 💖</h2>
+
+    <p>
+        From the moment you walked into my life, everything changed.  
+        You brought light into my days, warmth into my nights,  
+        and love into my heart.
+    </p>
+
+    <button onclick="showMemory()">Continue 💌</button>
+
+    <div id="proposal-text">
+        <p>
+            I remember when you said YES…  
+            that was one of the best things that ever happened to me.  
+            So to relive that moment, I want to ask...
+        </p>
+
+        <button onclick="showProposal()">Tap 💖</button>
+    </div>
+
+    <div id="proposal">
+        💍 KIKI, will you be my girlfriend? 💖
+    </div>
+
+    <div id="choices">
+        <button onclick="sendResult('YES ❤️')">YES ❤️</button>
+        <button onclick="sendResult('NO 💔')">NO 💔</button>
+    </div>
+</div>
+
+<audio id="music" autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<script>
+function openLove(){
+    document.getElementById('envelope-screen').style.display="none";
+    document.getElementById('card').style.display="block";
+    document.getElementById('music').play();
+}
+
+function showMemory(){
+    document.getElementById('proposal-text').style.display="block";
+}
+
+function showProposal(){
+    document.getElementById('proposal').style.display="block";
+    document.getElementById('choices').style.display="block";
+}
+
+function sendResult(choice){
+    const msg = `KIKI answered: ${choice}`;
+    window.location.href = `https://wa.me/254111926006?text=${encodeURIComponent(msg)}`;
+}
+</script>
+
+</body>
+</html>
