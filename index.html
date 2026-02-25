@@ -12,91 +12,65 @@
 body{
     font-family:'Poppins',sans-serif;
     background:linear-gradient(135deg,#ff758c,#ff7eb3);
-    height:100vh;
-    overflow:hidden;
+    min-height:100vh;
+    overflow:auto;
     display:flex;
     align-items:center;
     justify-content:center;
     color:white;
-}
-
-#envelope-screen{
-    position:fixed;
-    inset:0;
-    background:linear-gradient(135deg,#ff416c,#ff4b2b);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    z-index:10;
-}
-
-.envelope{
-    width:180px;
-    height:120px;
-    background:#fff;
-    border-radius:8px;
-    cursor:pointer;
-    animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-    0%,100%{transform:scale(1);}
-    50%{transform:scale(1.08);}
+    padding:20px;
 }
 
 #card{
-    width:92%;
-    max-width:420px;
+    width:100%;
+    max-width:450px;
     background:rgba(255,255,255,0.15);
     backdrop-filter:blur(12px);
-    border-radius:20px;
+    border-radius:25px;
     padding:25px;
     text-align:center;
-    box-shadow:0 0 25px rgba(255,255,255,0.3);
-    display:none;
+    box-shadow:0 0 30px rgba(255,255,255,0.35);
     animation:fadeIn 2s;
 }
 
 @keyframes fadeIn{
-    from{opacity:0;transform:scale(0.9);}
-    to{opacity:1;transform:scale(1);}
+    from{opacity:0;transform:translateY(30px);}
+    to{opacity:1;transform:translateY(0);}
 }
 
-h2{
+h1{
     font-family:'Great Vibes',cursive;
-    font-size:2.6em;
-    margin-bottom:10px;
+    font-size:2.8em;
+    margin-bottom:15px;
 }
 
 p{
     font-size:15px;
-    line-height:1.7;
-    margin:10px 0;
+    line-height:1.9;
+    margin:12px 0;
 }
 
 button{
     background:#fff;
     color:#ff4b7d;
     border:none;
-    padding:12px 25px;
+    padding:12px 26px;
     border-radius:25px;
     font-size:15px;
     cursor:pointer;
-    margin:10px;
+    margin-top:15px;
     transition:0.3s;
 }
 
 button:hover{transform:scale(1.08);}
 
-#proposal-text, #proposal, #choices{
+#hidden, #memory, #proposal, #choices{
     display:none;
-    margin-top:15px;
 }
 
 #proposal{
-    font-size:1.5em;
+    font-size:1.6em;
+    margin-top:20px;
     animation:glow 2s infinite alternate;
 }
 
@@ -105,33 +79,88 @@ button:hover{transform:scale(1.08);}
     to{text-shadow:0 0 25px #fff;}
 }
 
+.heart{
+    position:fixed;
+    bottom:-20px;
+    font-size:20px;
+    animation:floatUp 7s linear infinite;
+}
+
+@keyframes floatUp{
+    0%{transform:translateY(0);opacity:1;}
+    100%{transform:translateY(-110vh);opacity:0;}
+}
+
 audio{display:none;}
 </style>
 </head>
 
 <body>
 
-<div id="envelope-screen">
-    <div class="envelope" onclick="openLove()"></div>
-    <h1>Tap To Open 💌</h1>
-</div>
-
 <div id="card">
-    <h2>My Beautiful KIKI 💖</h2>
+    <h1>My Beautiful KIKI 💖</h1>
 
     <p>
-        From the moment you walked into my life, everything changed.  
-        You brought light into my days, warmth into my nights,  
-        and love into my heart.
+        From the very first moment we spoke, something inside me changed.  
+        I didn’t know exactly what it was, but I felt it — a warmth, a connection,  
+        a feeling that you were someone special.
     </p>
 
-    <button onclick="showMemory()">Continue 💌</button>
+    <p>
+        As time passed, that feeling only grew stronger.  
+        Your smile became my favorite sight.  
+        Your voice became my favorite sound.  
+        Your happiness became my biggest priority.
+    </p>
 
-    <div id="proposal-text">
+    <p>
+        You came into my life and slowly, gently, you changed everything.  
+        You taught my heart how to feel deeper, how to love harder,  
+        and how to care without fear.
+    </p>
+
+    <p>
+        Every moment with you — the laughs, the late talks, the silly moments,  
+        the deep conversations — they all became memories I hold close to my heart.
+    </p>
+
+    <button onclick="showHidden()">Continue 💌</button>
+
+    <div id="hidden">
         <p>
-            I remember when you said YES…  
-            that was one of the best things that ever happened to me.  
-            So to relive that moment, I want to ask...
+            You are my safe place.  
+            The person I think about when I wake up.  
+            The person I think about before I fall asleep.
+        </p>
+
+        <p>
+            When I imagine my future, you are always there.  
+            In my dreams. In my plans. In my prayers.
+        </p>
+
+        <p>
+            I want to protect your heart, respect your soul,  
+            and love you in the purest way possible.
+        </p>
+
+        <button onclick="showMemory()">One More Thing 🥺</button>
+    </div>
+
+    <div id="memory">
+        <p>
+            I remember the moment you said YES.  
+            My heart raced. My soul smiled.  
+            And in that moment, I felt truly happy.
+        </p>
+
+        <p>
+            That was one of the best things that ever happened to me.  
+            A memory I will forever cherish.
+        </p>
+
+        <p>
+            So to relive that beautiful moment,  
+            I want to ask you again…
         </p>
 
         <button onclick="showProposal()">Tap 💖</button>
@@ -152,14 +181,12 @@ audio{display:none;}
 </audio>
 
 <script>
-function openLove(){
-    document.getElementById('envelope-screen').style.display="none";
-    document.getElementById('card').style.display="block";
-    document.getElementById('music').play();
+function showHidden(){
+    document.getElementById('hidden').style.display="block";
 }
 
 function showMemory(){
-    document.getElementById('proposal-text').style.display="block";
+    document.getElementById('memory').style.display="block";
 }
 
 function showProposal(){
@@ -171,6 +198,17 @@ function sendResult(choice){
     const msg = `KIKI answered: ${choice}`;
     window.location.href = `https://wa.me/254111926006?text=${encodeURIComponent(msg)}`;
 }
+
+/* Floating hearts */
+setInterval(()=>{
+    const heart=document.createElement('div');
+    heart.className='heart';
+    heart.innerHTML='❤️';
+    heart.style.left=Math.random()*100+'vw';
+    heart.style.fontSize=(15+Math.random()*25)+'px';
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),8000);
+},450);
 </script>
 
 </body>
